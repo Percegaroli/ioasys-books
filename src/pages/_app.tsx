@@ -1,8 +1,13 @@
-import '../modules/core/styles/globals.css'
-import type { AppProps } from 'next/app'
+import '../modules/core/styles/globals.css';
+import type { AppProps } from 'next/app';
+import { SSRProvider } from 'react-aria';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <SSRProvider>
+      <Component {...pageProps} />
+    </SSRProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;

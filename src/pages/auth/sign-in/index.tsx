@@ -1,5 +1,7 @@
+import SignInTemplate from '../../../modules/auth/components/SignInTemplate';
+
 const SignInPage = () => {
-  return null;
+  return <SignInTemplate />;
 };
 
 export default SignInPage;

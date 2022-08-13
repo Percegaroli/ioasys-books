@@ -2,7 +2,12 @@
 module.exports = {
   content: ['./src/**/*.{tsx, ts}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Heebo', 'sans-serif'],
+        Heebo: ['Heebo', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 };

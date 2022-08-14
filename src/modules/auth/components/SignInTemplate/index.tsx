@@ -8,6 +8,8 @@ import BGDesktop from '../../assets/images/bg-desktop.png';
 import classNames from 'classnames';
 import { useBreakpoint } from '../../../shared/hooks/useBreakpoints';
 import PageContainer from '../../../shared/components/PageContainer';
+import AuthErrorPopover from '../AuthErrorPopover';
+import { useEffect, useRef } from 'react';
 
 interface Form {
   email: string;
@@ -23,11 +25,15 @@ const SignInTemplate = () => {
   });
   const { mutate: signIn, isLoading, isError } = useSignIn();
   const isDesktop = useBreakpoint('lg');
-  console.log(isDesktop);
+  const popoverContainerRef = useRef<HTMLDivElement | null>(null);
 
   const onSubmit = (data: Form) => {
     signIn(data);
   };
+
+  useEffect(() => {
+    window.dispatchEvent(new Event('resize'));
+  }, []);
 
   return (
     <div
@@ -56,11 +62,14 @@ const SignInTemplate = () => {
 
             <div className="flex flex-col gap-y-6">
               <AuthInput name="email" label="Email" />
-              <PasswordInput
-                name="password"
-                label="Senha"
-                isLoading={isLoading}
-              />
+              <div className="relative" ref={popoverContainerRef}>
+                <PasswordInput
+                  name="password"
+                  label="Senha"
+                  isLoading={isLoading}
+                />
+                <AuthErrorPopover isError={isError} />
+              </div>
             </div>
           </form>
         </FormProvider>

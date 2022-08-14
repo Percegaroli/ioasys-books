@@ -7,12 +7,17 @@ import { SignInPayload } from '../../api/signIn/interfaces';
 const useSignIn = () => {
   const router = useRouter();
   return useMutation(
-    (payload: SignInPayload) =>
-      signIn('credentials', {
+    async (payload: SignInPayload) => {
+      const response = await signIn('credentials', {
         callbackUrl: undefined,
         redirect: false,
         ...payload,
-      }),
+      });
+      if (response?.error) {
+        throw new Error('Email e/ou senha incorretos');
+      }
+      return response;
+    },
     {
       onSuccess: () => {
         router.push(AppRoutes.HOME);

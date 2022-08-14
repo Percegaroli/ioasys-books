@@ -15,7 +15,7 @@ const PasswordInput = ({ isLoading, label, name }: Props) => {
         name={name}
         type="password"
         classes={{
-          input: 'pr-[110px] shadow-fill-[#87304D]',
+          input: 'mr-[110px] shadow-fill-[#87304D]',
         }}
       />
       <Button

@@ -46,7 +46,7 @@ const AuthInput = (props: Props) => {
         }}
         type={type}
         className={classNames(
-          'text-base leading-6 text-white bg-transparent outline-none autofill:shadow-fill-[#87304D]',
+          'text-base leading-6 text-white bg-transparent outline-none',
           classes.input ?? ''
         )}
       />

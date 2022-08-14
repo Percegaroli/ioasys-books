@@ -11,6 +11,7 @@ const useUnauthenticatedRoute = () => {
     if (status === 'authenticated') {
       router.push(AppRoutes.HOME);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
 
   return status !== 'unauthenticated';

@@ -18,7 +18,7 @@ const AuthInput = (props: Props) => {
   const { classes = {}, label, type, name } = props;
   const ariaRef = useRef<HTMLInputElement | null>(null);
   const { register } = useFormContext();
-  let { labelProps, inputProps } = useTextField(props, ariaRef);
+  const { labelProps, inputProps } = useTextField(props, ariaRef);
   const { ref: hookFormRef, ...rest } = register(name);
 
   return (
@@ -46,7 +46,7 @@ const AuthInput = (props: Props) => {
         }}
         type={type}
         className={classNames(
-          'text-base leading-6 text-white bg-transparent outline-none',
+          'text-base leading-6 text-white bg-transparent outline-none autofill:shadow-fill-[#87304D]',
           classes.input ?? ''
         )}
       />

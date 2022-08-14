@@ -9,5 +9,9 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-autofill'),
+    require('tailwindcss-text-fill'),
+    require('tailwindcss-shadow-fill'),
+  ],
 };

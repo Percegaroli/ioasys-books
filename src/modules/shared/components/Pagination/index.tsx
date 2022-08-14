@@ -11,6 +11,7 @@ interface Props {
   classes?: {
     root?: string;
   };
+  changePage: (page: number) => void;
 }
 
 interface PaginationButton {
@@ -40,14 +41,21 @@ const Pagination = ({
   currentPage,
   totalPages: totalPagesProps,
   classes = {},
+  changePage,
 }: Props) => {
-  const [totalPages, setTotalPages] = useState(totalPagesProps);
+  const [totalPages, setTotalPages] = useState(Math.ceil(totalPagesProps));
 
   useEffect(() => {
-    if (totalPagesProps && totalPages !== totalPagesProps) {
-      setTotalPages(totalPagesProps);
+    if (totalPagesProps && totalPages !== Math.ceil(totalPagesProps)) {
+      setTotalPages(Math.ceil(totalPagesProps));
     }
-  }, [totalPagesProps]);
+  }, [totalPages, totalPagesProps]);
+
+  useEffect(() => {
+    if (totalPages && currentPage > totalPages) {
+      changePage(1);
+    }
+  }, [totalPages, currentPage, changePage]);
 
   const isPreviousButtonDisabled = currentPage <= 1;
   const isNextButtonDisabled = currentPage === totalPages;
@@ -73,8 +81,8 @@ const Pagination = ({
         />
       </PaginationButton>
       <p className="text-xs leading-4 text-[#333333]">
-        Página <span className="text-medium">{currentPage}</span> de{' '}
-        <span className="text-medium">{totalPages}</span>
+        Página <span className="font-medium">{currentPage}</span> de{' '}
+        <span className="font-medium">{totalPages}</span>
       </p>
       <PaginationButton disabled={isNextButtonDisabled} onPress={toNextPage}>
         <ChevronLeftOutlined

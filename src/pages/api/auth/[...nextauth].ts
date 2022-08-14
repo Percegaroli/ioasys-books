@@ -39,9 +39,6 @@ export default NextAuth({
   },
   callbacks: {
     session: ({ session, token }) => {
-      console.log(token);
-      console.log('session:');
-      console.log(session);
       return {
         ...session,
         user: {
@@ -55,7 +52,6 @@ export default NextAuth({
     jwt: async ({ token, account, user }) => {
       // after initial sign in
       if (account && user?.accessToken) {
-        console.log('aqui');
         return {
           ...token,
           gender: user?.gender,

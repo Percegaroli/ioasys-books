@@ -10,10 +10,10 @@ const PageContainer = ({ children, className }: PropsWithChildren<Props>) => {
     <div
       className={classNames(
         className,
-        'mx-auto px-4 pt-[42px] pb-4 min-h-screen'
+        'px-4 pt-[42px] pb-4 min-h-screen sm:px-10'
       )}
     >
-      {children}
+      <div className="mx-auto sm:max-w-[1130px]">{children}</div>
     </div>
   );
 };

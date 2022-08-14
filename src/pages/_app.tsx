@@ -1,7 +1,7 @@
 import '../modules/core/styles/globals.css';
 import type { AppProps } from 'next/app';
 import { SessionProvider } from 'next-auth/react';
-import { SSRProvider } from 'react-aria';
+import { OverlayProvider, SSRProvider } from 'react-aria';
 import { useRef } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
@@ -17,7 +17,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     >
       <QueryClientProvider client={queryClient.current}>
         <SSRProvider>
-          <Component {...pageProps} />
+          <OverlayProvider>
+            <Component {...pageProps} />
+          </OverlayProvider>
         </SSRProvider>
       </QueryClientProvider>
     </SessionProvider>

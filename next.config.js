@@ -16,9 +16,9 @@ const nextConfig = {
         },
       ],
     });
-
     return config;
   },
+  images: ['d2drtqy2ezsot0.cloudfront.net'],
 };
 
 module.exports = nextConfig;

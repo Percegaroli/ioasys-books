@@ -12,7 +12,6 @@ const useUnauthenticatedRoute = () => {
       router.push(AppRoutes.HOME);
     }
   }, [status]);
-  console.log(status);
 
   return status !== 'unauthenticated';
 };

@@ -10,6 +10,7 @@ const usePrivatePage = () => {
     if (status === 'unauthenticated') {
       router.push(AppRoutes.SIGN_IN);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
 
   return status !== 'authenticated';

@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps, useRef } from 'react';
+import { useRef } from 'react';
 import { AriaButtonProps, useButton } from 'react-aria';
 
 interface Props extends AriaButtonProps {

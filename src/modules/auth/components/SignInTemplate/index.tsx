@@ -2,6 +2,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import AuthInput from '../AuthInput';
 import PasswordInput from '../PasswordInput';
 import Logo from '../../../shared/assets/images/Logo.svg';
+import useSignIn from '../../hooks/useSignIn';
 
 interface Form {
   email: string;
@@ -15,9 +16,10 @@ const SignInTemplate = () => {
       password: '',
     },
   });
+  const { mutate: signIn, isLoading, isError } = useSignIn();
 
   const onSubmit = (data: Form) => {
-    console.log(data);
+    signIn(data);
   };
 
   return (
@@ -31,7 +33,11 @@ const SignInTemplate = () => {
 
           <div className="flex flex-col gap-y-6">
             <AuthInput name="email" label="Email" />
-            <PasswordInput name="password" label="Senha" />
+            <PasswordInput
+              name="password"
+              label="Senha"
+              isLoading={isLoading}
+            />
           </div>
         </form>
       </FormProvider>

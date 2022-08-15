@@ -34,8 +34,7 @@ const useURLPagination = ({ urlParam = 'page', initialPage }: Config = {}) => {
         });
       }
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [urlParam]
+    [urlParam, router]
   );
   const toNextPage = useCallback(
     () => changePageOnUrl(page + 1),

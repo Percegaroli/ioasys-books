@@ -1,9 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import classNames from 'classnames';
-import { useMemo, useRef, useState } from 'react';
+import { useMemo, useRef } from 'react';
 import { useButton } from 'react-aria';
 import DefaultBookCover from '../../assets/defaultBookCover.png';
-import BookDetailsModal from '../BookDetailsModal';
 import BookCardSkeleton from './Skeleton';
 
 interface Props {
@@ -14,6 +13,7 @@ interface Props {
   pages: number;
   publisher: string;
   publishedAt: number;
+  onPress: (id: string) => void;
 }
 
 const BookCard = ({
@@ -24,9 +24,9 @@ const BookCard = ({
   publisher,
   title,
   id,
+  onPress,
 }: Props) => {
   const ref = useRef<HTMLDivElement | null>(null);
-  const [isShowingModal, setIsShowingModal] = useState(false);
   const displayedAuthors = useMemo(() => {
     return authors.slice(0, 2);
   }, [authors]);
@@ -34,9 +34,7 @@ const BookCard = ({
   const { buttonProps } = useButton(
     {
       elementType: 'div',
-      onPress: () => {
-        setIsShowingModal(true);
-      },
+      onPress: () => onPress(id),
     },
     ref
   );
@@ -77,11 +75,6 @@ const BookCard = ({
           </div>
         </div>
       </div>
-      <BookDetailsModal
-        isOpen={isShowingModal}
-        onClose={() => setIsShowingModal(false)}
-        id={id}
-      />
     </>
   );
 };

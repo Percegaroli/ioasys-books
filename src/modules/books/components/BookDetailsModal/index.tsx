@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 import ModalBase from '../../../shared/components/ModalBase';
 import useBookDetails from '../../hooks/useBookDetails';
 import DefaultBookCover from '../../assets/defaultBookCover.png';
@@ -30,17 +29,6 @@ const InformationItem = ({ label, value }: InformationItemProps) => {
 const BookDetailsModal = ({ isOpen, id, onClose }: Props) => {
   const { data } = useBookDetails(id, { active: isOpen });
   const router = useRouter();
-
-  useEffect(() => {
-    if (isOpen && router.query.bookId !== id) {
-      router.push({
-        query: {
-          ...router.query,
-          bookId: id,
-        },
-      });
-    }
-  }, [id, router, isOpen]);
 
   const onCloseModal = () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
